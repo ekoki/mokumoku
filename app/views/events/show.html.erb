@@ -96,15 +96,14 @@
                               method: :delete,
                               data: { confirm: 'キャンセルします' }
                   %>
-                <% else %>
-                  <% unless current_user.gender != 'woman' && @event.only_woman == true %>
+                <% elsif %>
+                  <% current_user.not_attend_event?(current_user, @event) %>
                     <%= link_to 'このもくもく会に参加する',
-                                event_attendance_url(@event),
-                                class: 'btn btn-primary',
-                                method: :post,  
-                                data: { confirm: '申し込みます' }
+                              event_attendance_url(@event),
+                              class: 'btn btn-primary',
+                              method: :post,
+                              data: { confirm: '申し込みます' }
                     %>
-                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
